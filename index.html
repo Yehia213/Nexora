@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexora</title>
+    <title>Nexora Search</title>
     <style>
-        /* General Reset */
         body, html {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #ff7eb3, #59d0ff);
-            color: #fff;
             height: 100%;
+            color: white;
+            overflow: hidden;
         }
 
-        /* Container */
         .container {
             display: flex;
             flex-direction: column;
@@ -23,35 +23,21 @@
             align-items: center;
             height: 100%;
             text-align: center;
+            transition: opacity 1s ease;
         }
 
-        /* Header */
-        header {
-            margin-bottom: 20px;
+        .hidden {
+            opacity: 0;
         }
 
-        header img {
-            width: 120px; /* Adjust size as needed */
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin: 0;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Search Box */
         .search-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 30px;
-            padding: 10px 20px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .search-box input {
@@ -64,10 +50,6 @@
             margin-right: 10px;
         }
 
-        .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
         .search-box button {
             background: #fff;
             color: #ff7eb3;
@@ -77,53 +59,74 @@
             width: 40px;
             height: 40px;
             cursor: pointer;
-            transition: transform 0.2s;
         }
 
-        .search-box button:hover {
-            transform: scale(1.1);
+        .results-box {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 80%;
+            margin: 20px auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
         }
 
-        /* Footer */
-        footer p {
-            margin-top: 50px;
-            font-size: 0.8rem;
-            opacity: 0.7;
+        .result {
+            margin: 10px 0;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
+    <div class="container" id="homePage">
         <header>
-            <!-- Add the Nexora logo here -->
             <h1>Nexora</h1>
         </header>
         <main>
             <div class="search-box">
-                <input type="text" placeholder="Search Nexora" id="search-input">
-                <button id="search-btn">🔍</button>
+                <input type="text" id="searchInput" placeholder="Search Nexora">
+                <button onclick="performSearch()">🔍</button>
             </div>
         </main>
-        <footer>
-            <p>&copy; 2024 Nexora. All rights reserved.</p>
-        </footer>
+    </div>
+
+    <div class="container hidden" id="resultsPage">
+        <div class="results-box" id="resultsContainer">
+        </div>
     </div>
 
     <script>
-        // JavaScript to handle the search functionality
-        document.getElementById('search-btn').addEventListener('click', function () {
-            const query = document.getElementById('search-input').value;
+        function performSearch() {
+            const query = document.getElementById('searchInput').value;
             if (query) {
-                // Replace with your search engine's URL or API
-                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                document.getElementById('homePage').classList.add('hidden');
+                fetchResults(query);
             }
-        });
+        }
 
-        document.getElementById('search-input').addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                document.getElementById('search-btn').click();
-            }
-        });
+        function fetchResults(query) {
+            fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&pretty=1`)
+                .then(response => response.json())
+                .then(data => {
+                    displayResults(data.RelatedTopics);
+                    document.getElementById('resultsPage').classList.remove('hidden');
+                })
+                .catch(error => console.error('Error fetching results:', error));
+        }
+
+        function displayResults(results) {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = '';
+            results.forEach(result => {
+                if (result.Text && result.FirstURL) {
+                    container.innerHTML += `
+                        <div class="result">
+                            <a href="${result.FirstURL}" target="_blank">${result.Text}</a>
+                        </div>`;
+                }
+            });
+        }
     </script>
 </body>
+
 </html>
