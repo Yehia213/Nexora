@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexora Search</title>
+    <title>Nexora</title>
     <style>
         /* General Reset */
         body, html {
@@ -24,79 +24,54 @@
             align-items: center;
             height: 100%;
             text-align: center;
-            transition: opacity 1s ease-in-out;
         }
 
         /* Header */
+        header {
+            margin-bottom: 20px;
+        }
+
         header h1 {
             font-size: 3rem;
             margin: 0;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        /* Search Box */
-        .search-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 30px;
-            padding: 10px 20px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .search-box input {
-            border: none;
-            outline: none;
-            background: transparent;
-            color: #fff;
-            font-size: 1.2rem;
-            width: 300px;
-            margin-right: 10px;
-        }
-
-        .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .search-box button {
-            background: #fff;
-            color: #ff7eb3;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .search-box button:hover {
-            transform: scale(1.1);
-        }
-
-        /* Result Page Styling */
-        .results-container {
-            display: none;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 20px;
-            padding: 20px;
-            max-width: 80%;
-            max-height: 80%;
-            overflow: auto;
-            transition: opacity 1s ease-in-out;
-        }
-
+        /* Footer */
         footer p {
             margin-top: 50px;
             font-size: 0.8rem;
             opacity: 0.7;
         }
+
+        /* About Page */
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .back-btn {
+            background-color: #ff7eb3;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
-    <div class="container" id="homePage">
+    <div class="container">
         <header>
             <h1>Nexora</h1>
         </header>
@@ -107,49 +82,27 @@
             </div>
         </main>
         <footer>
-            <p>© 2024 Nexora. All rights reserved.</p>
+            <p>
+                <a href="about.html" style="color: white; text-decoration: none;">© 2024 Nexora. All rights reserved.</a>
+            </p>
         </footer>
     </div>
 
-    <div class="results-container" id="resultsPage">
-        <h2>Search Results</h2>
-        <div id="results"></div>
-        <button onclick="goBack()">Go Back</button>
-    </div>
-
     <script>
-        // Show Results after fade-out transition
+        // Handle search functionality
         document.getElementById('search-btn').addEventListener('click', function () {
             const query = document.getElementById('search-input').value;
             if (query) {
-                // Fade out homepage and show results page
-                document.getElementById('homePage').style.opacity = 0;
-                setTimeout(function () {
-                    document.getElementById('homePage').style.display = 'none';
-                    document.getElementById('resultsPage').style.display = 'block';
-                    document.getElementById('resultsPage').style.opacity = 1;
-                    // Call Google search with query
-                    searchGoogle(query);
-                }, 1000); // Wait for the fade-out effect
+                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
             }
         });
 
-        // Function to search Google using the query
-        function searchGoogle(query) {
-            const resultsContainer = document.getElementById('results');
-            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-            resultsContainer.innerHTML = `<p>Results for: <a href="${searchUrl}" target="_blank">${query}</a></p>`;
-        }
-
-        // Go back to the home page
-        function goBack() {
-            document.getElementById('resultsPage').style.opacity = 0;
-            setTimeout(function () {
-                document.getElementById('resultsPage').style.display = 'none';
-                document.getElementById('homePage').style.display = 'flex';
-                document.getElementById('homePage').style.opacity = 1;
-            }, 1000); // Wait for the fade-out effect
-        }
+        document.getElementById('search-input').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                document.getElementById('search-btn').click();
+            }
+        });
     </script>
+
 </body>
 </html>
