@@ -76,12 +76,13 @@
             border-radius: 10px;
             max-width: 600px;
             width: 90%;
-            text-align: center;
+            text-align: left;
+            overflow-y: auto;
         }
         #content-box p {
             font-size: 1.2rem;
-            font-style: italic;
             color: #fff;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -105,48 +106,44 @@
     </div>
 
     <script>
-        // 100 Day Quotes
-        const quotes = [
-            "The only way to do great work is to love what you do.",
-            "Don't watch the clock; do what it does. Keep going.",
-            "Success is not final, failure is not fatal: It is the courage to continue that counts.",
-            "The future belongs to those who believe in the beauty of their dreams.",
-            "You miss 100% of the shots you don’t take.",
-            "The only limit to our realization of tomorrow is our doubts of today.",
-            "It does not matter how slowly you go as long as you do not stop.",
-            "Act as if what you do makes a difference. It does.",
-            "Success is not how high you have climbed, but how you make a positive difference to the world.",
-            "You are never too old to set another goal or to dream a new dream.",
-            // Add more quotes here until you have 100
-        ];
+        const apiKey = '8424d7cb68f69aa3edda56ef590a7417'; // Serpstack API key
+        const apiUrl = 'http://api.serpstack.com/search'; // Serpstack API endpoint
 
-        // Shuffle the quotes array
-        function shuffleQuotes() {
-            for (let i = quotes.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [quotes[i], quotes[j]] = [quotes[j], quotes[i]];
-            }
+        // Function to fetch search results from Serpstack API
+        function fetchSearchResults(query) {
+            const url = `${apiUrl}?access_key=${apiKey}&query=${encodeURIComponent(query)}&num=5`; // Fetch top 5 results
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'ok' && data.organic_results) {
+                        displayResults(data.organic_results);
+                    } else {
+                        document.getElementById('content-box').innerHTML = "<p>ER_101: There is a serious problem :)</p>";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                    document.getElementById('content-box').innerHTML = "<p>ER_101: There is a serious problem :)</p>";
+                });
         }
 
-        // Display a shuffled quote on page load
-        function displayRandomQuote() {
-            shuffleQuotes();
+        // Function to display results inside the content box
+        function displayResults(results) {
             const contentBox = document.getElementById('content-box');
-            contentBox.innerHTML = `<p>${quotes[0]}</p>`;
-        }
+            contentBox.innerHTML = ''; // Clear previous content
 
-        // Call the function when the page loads
-        window.onload = function() {
-            displayRandomQuote();
-        };
+            results.forEach(result => {
+                const resultElement = document.createElement('p');
+                resultElement.innerHTML = `<a href="${result.url}" target="_blank" style="color: #ff7eb3; text-decoration: none;">${result.title}</a><br>${result.snippet}`;
+                contentBox.appendChild(resultElement);
+            });
+        }
 
         // Handle search button click
         document.getElementById('search-btn').addEventListener('click', function () {
             const query = document.getElementById('search-input').value;
             if (query) {
-                // Open Google search results in a new tab
-                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                window.open(googleSearchUrl, '_blank');
+                fetchSearchResults(query);
             } else {
                 console.log("Please enter a search query.");
                 document.getElementById('content-box').innerHTML = "<p>Please enter a search query.</p>";
@@ -162,4 +159,3 @@
     </script>
 </body>
 </html>
-
