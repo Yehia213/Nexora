@@ -1,9 +1,10 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexora</title>
     <style>
-        /* General Reset */
         body, html {
             margin: 0;
             padding: 0;
@@ -13,8 +14,6 @@
             height: 100%;
             overflow: hidden;
         }
-
-        /* Container */
         .container {
             display: flex;
             flex-direction: column;
@@ -24,15 +23,11 @@
             text-align: center;
             transition: opacity 1s ease-in-out;
         }
-
-        /* Header */
         header h1 {
             font-size: 3rem;
             margin: 0;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
-
-        /* Search Box */
         .search-box {
             display: flex;
             justify-content: center;
@@ -43,7 +38,6 @@
             padding: 10px 20px;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
         }
-
         .search-box input {
             border: none;
             outline: none;
@@ -53,11 +47,9 @@
             width: 300px;
             margin-right: 10px;
         }
-
         .search-box input::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
-
         .search-box button {
             background: #fff;
             color: #ff7eb3;
@@ -69,21 +61,27 @@
             cursor: pointer;
             transition: transform 0.2s;
         }
-
         .search-box button:hover {
             transform: scale(1.1);
         }
-
         footer p {
             margin-top: 50px;
             font-size: 0.8rem;
             opacity: 0.7;
         }
-
-        /* Fade-out effect */
-        .fade-out {
-            opacity: 0;
-            pointer-events: none;
+        #content-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+        #content-box p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #fff;
         }
     </style>
 </head>
@@ -98,6 +96,7 @@
                 <button id="search-btn">🔍</button>
             </div>
         </main>
+        <div id="content-box"></div>
         <footer>
             <p>
                 <a href="about.html" style="color: white; text-decoration: none;">© 2024 Nexora. All rights reserved.</a>
@@ -106,31 +105,61 @@
     </div>
 
     <script>
-        // Handle search functionality with fade effect
+        // 100 Day Quotes
+        const quotes = [
+            "The only way to do great work is to love what you do.",
+            "Don't watch the clock; do what it does. Keep going.",
+            "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+            "The future belongs to those who believe in the beauty of their dreams.",
+            "You miss 100% of the shots you don’t take.",
+            "The only limit to our realization of tomorrow is our doubts of today.",
+            "It does not matter how slowly you go as long as you do not stop.",
+            "Act as if what you do makes a difference. It does.",
+            "Success is not how high you have climbed, but how you make a positive difference to the world.",
+            "You are never too old to set another goal or to dream a new dream.",
+            // Add more quotes here until you have 100
+        ];
+
+        // Shuffle the quotes array
+        function shuffleQuotes() {
+            for (let i = quotes.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [quotes[i], quotes[j]] = [quotes[j], quotes[i]];
+            }
+        }
+
+        // Display a shuffled quote on page load
+        function displayRandomQuote() {
+            shuffleQuotes();
+            const contentBox = document.getElementById('content-box');
+            contentBox.innerHTML = `<p>${quotes[0]}</p>`;
+        }
+
+        // Call the function when the page loads
+        window.onload = function() {
+            displayRandomQuote();
+        };
+
+        // Handle search button click
         document.getElementById('search-btn').addEventListener('click', function () {
             const query = document.getElementById('search-input').value;
             if (query) {
-                // Apply fade-out effect
-                const container = document.getElementById('home-container');
-                console.log("Fading out...");
-                container.classList.add('fade-out');
-
-                // Wait for the fade-out transition to finish before redirecting
-                setTimeout(function () {
-                    console.log("Redirecting to Google...");
-                    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                }, 1000); // 1s delay to match the fade duration
+                // Open Google search results in a new tab
+                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                window.open(googleSearchUrl, '_blank');
             } else {
                 console.log("Please enter a search query.");
+                document.getElementById('content-box').innerHTML = "<p>Please enter a search query.</p>";
             }
         });
 
+        // Handle Enter key press to trigger search
         document.getElementById('search-input').addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
                 document.getElementById('search-btn').click();
             }
         });
     </script>
+</body>
+</html>
 
-
-</body></html>
