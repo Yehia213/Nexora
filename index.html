@@ -89,7 +89,7 @@
 <body>
     <div class="container" id="home-container">
         <header>
-            <h1>Search Nexora</h1>
+            <h1>Nexora</h1>
         </header>
         <main>
             <div class="search-box">
@@ -97,13 +97,11 @@
                 <button id="search-btn">🔍</button>
             </div>
         </main>
-        <div id="content-box"><p>Welcome To Nexora</p>
-<a href="https://yehia213.github.io/Nexora-Light/" style="color: white; text-decoration: none;">New light mode is here✨</a>
-</div>
+        
 
         <footer>
             <p>
-                <a href="about.html" style="color: white; text-decoration: none;">© 2024 Nexora. All rights reserved.</a>
+                
             </p>
         </footer>
     </div>
@@ -133,6 +131,143 @@
             }
         });
     </script>
+
+
+
+</body></html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="Nexora" type="image/x-icon" href="favicon.ico">
+    <title>Nexora</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(linear-gradient(12deg, 
+                red, blue, indigo));
+            color: #fff;
+            height: 100%;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            transition: opacity 1s ease-in-out;
+        }
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        .search-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 10px 20px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #fff;
+            font-size: 1.2rem;
+            width: 300px;
+            margin-right: 10px;
+        }
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .search-box button {
+            background: #fff;
+            color: #ff7eb3;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .search-box button:hover {
+            transform: scale(1.1);
+        }
+        footer p {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        #content-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            text-align: left;
+            overflow-y: auto;
+        }
+        #content-box p {
+            font-size: 1.2rem;
+            color: #fff;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="home-container">
+        <header>
+            <h1>Nexora</h1>
+        </header>
+        <main>
+            <div class="search-box">
+                <input type="text" placeholder="Search Nexora" id="search-input">
+                <button id="search-btn">🔍</button>
+            </div>
+        </main>
+        
+
+        <footer>
+            <p>
+                
+            </p>
+        </footer>
+    </div>
+
+    <script>        // Handle search functionality with fade effect
+        document.getElementById('search-btn').addEventListener('click', function () {
+            const query = document.getElementById('search-input').value;
+            if (query) {
+                // Apply fade-out effect
+                const container = document.getElementById('home-container');
+                console.log("Fading out...");
+                container.classList.add('fade-out');
+
+                // Wait for the fade-out transition to finish before redirecting
+                setTimeout(function () {
+                    console.log("Redirecting to Google...");
+                    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                }, 1000); // 1s delay to match the fade duration
+            } else {
+                console.log("Please enter a search query.");
+            }
+        });
+
+        document.getElementById('search-input').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                document.getElementById('search-btn').click();
+            }
+        });
+    </script>
+
 
 
 </body></html>
