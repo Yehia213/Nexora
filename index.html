@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexora</title>
@@ -9,7 +7,8 @@
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(purple, blue);
+            background: linear-gradient(90deg, 
+                red, orange, yellow, green, blue, indigo, violet);
             color: #fff;
             height: 100%;
             overflow: hidden;
@@ -97,7 +96,10 @@
                 <button id="search-btn">🔍</button>
             </div>
         </main>
-        <div id="content-box"></div>
+        <div id="content-box"><p>Welcome To Nexora</p>
+<a href="https://yehia213.github.io/Nexora-Light/" style="color: white; text-decoration: none;">New light mode is here✨</a>
+</div>
+
         <footer>
             <p>
                 <a href="about.html" style="color: white; text-decoration: none;">© 2024 Nexora. All rights reserved.</a>
@@ -105,57 +107,31 @@
         </footer>
     </div>
 
-    <script>
-        const apiKey = '8424d7cb68f69aa3edda56ef590a7417'; // Serpstack API key
-        const apiUrl = 'http://api.serpstack.com/search'; // Serpstack API endpoint
-
-        // Function to fetch search results from Serpstack API
-        function fetchSearchResults(query) {
-            const url = `${apiUrl}?access_key=${apiKey}&query=${encodeURIComponent(query)}&num=5`; // Fetch top 5 results
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'ok' && data.organic_results) {
-                        displayResults(data.organic_results);
-                    } else {
-                        document.getElementById('content-box').innerHTML = "<p>ER_101: There is a serious problem :)</p>";
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching search results:', error);
-                    document.getElementById('content-box').innerHTML = "<p>ER_101: There is a serious problem :)</p>";
-                });
-        }
-
-        // Function to display results inside the content box
-        function displayResults(results) {
-            const contentBox = document.getElementById('content-box');
-            contentBox.innerHTML = ''; // Clear previous content
-
-            results.forEach(result => {
-                const resultElement = document.createElement('p');
-                resultElement.innerHTML = `<a href="${result.url}" target="_blank" style="color: #ff7eb3; text-decoration: none;">${result.title}</a><br>${result.snippet}`;
-                contentBox.appendChild(resultElement);
-            });
-        }
-
-        // Handle search button click
+    <script>        // Handle search functionality with fade effect
         document.getElementById('search-btn').addEventListener('click', function () {
             const query = document.getElementById('search-input').value;
             if (query) {
-                fetchSearchResults(query);
+                // Apply fade-out effect
+                const container = document.getElementById('home-container');
+                console.log("Fading out...");
+                container.classList.add('fade-out');
+
+                // Wait for the fade-out transition to finish before redirecting
+                setTimeout(function () {
+                    console.log("Redirecting to Google...");
+                    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                }, 1000); // 1s delay to match the fade duration
             } else {
                 console.log("Please enter a search query.");
-                document.getElementById('content-box').innerHTML = "<p>Please enter a search query.</p>";
             }
         });
 
-        // Handle Enter key press to trigger search
         document.getElementById('search-input').addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
                 document.getElementById('search-btn').click();
             }
         });
     </script>
-</body>
-</html>
+
+
+</body></html>
