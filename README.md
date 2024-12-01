@@ -9,3 +9,5 @@ This copyright and trademark protection apply in perpetuity. Any unauthorized re
 All intellectual property rights in and to Nexora are owned exclusively by Yehia Shawky Sayed and are protected under international copyright, trademark, and other intellectual property laws. Any violation of these rights will result in legal action to the fullest extent of the law.
 
 made in Egypt
+
+CO DESIGNER: Yamen Shawky Sayed (my brother)
