@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora Search</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0000ff, #5b00ff, #ff0000);
+            background-size: 200% 200%;
+            animation: gradientBG 8s ease infinite;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .search-container {
+            text-align: center;
+            color: white;
+        }
+
+        .search-container h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .gcse-search {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .gcse-search input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .gcse-search button {
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            color: #ff758c;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .gcse-search button:hover {
+            transform: scale(1.2);
+        }
+    </style>
+    <script async src="https://cse.google.com/cse.js?cx=65cdc7ba81fc649ea"></script>
+</head>
+<body>
+    <div class="search-container">
+        <h1>Nexora</h1>
+        <div class="gcse-search"></div>
+    </div>
+</body>
+</html>
