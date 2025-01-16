@@ -11,6 +11,7 @@
             padding: 0;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #0000ff, #5b00ff, #ff0000);
@@ -27,8 +28,8 @@
 
         .search-container {
             text-align: center;
-            color: black;
-            background: transparent !important;
+            color: white;
+            background: transparent;
         }
 
         .search-container h1 {
@@ -57,30 +58,35 @@
             font-size: 1.2rem !important;
             width: 200px !important;
             margin-right: 10px !important;
+            padding: 10px;
+            border-radius: 8px;
         }
 
         .gcse-search button {
             background: #000000 !important;
             border: none !important;
             font-size: 1.2rem;
-            color: black !important;
+            color: white !important;
             cursor: pointer;
             transition: transform 0.2s ease;
+            padding: 10px 20px;
+            border-radius: 8px;
         }
 
         .gcse-search button:hover {
-            transform: scale(1.2) !important;
+            transform: scale(1.1) !important;
         }
+
         .gsc-control-cse {
             border-radius: 4px;
         }
 
         .gsc-input {
-            border-radius: 4px; 
+            border-radius: 4px;
         }
 
         .gsc-search-button {
-            border-radius: 4px; 
+            border-radius: 4px;
         }
 
         .gsc-control-cse {
@@ -97,26 +103,41 @@
             margin-right: 10px !important;
         }
 
-        
         .gsc-search-button {
             border: none !important;
             background: #000000 !important;
-            color: black !important; 
+            color: white !important;
         }
 
-        
         .gsc-resultsbox-visible {
-            background: none !important;
-            color: white !important; 
+            background: rgba(0, 0, 0, 0.7) !important;
+            color: white !important;
+            border-radius: 8px;
+            padding: 20px;
         }
 
-        .gsc-input-box, .gsc-input-box-hover {
-            border: 3px !important; 
+        .gsc-result {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
         }
+
+        .gsc-result:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 4px;
+        }
+
         h1 {
-            color: linar-gradient(135deg, black, rgb(59, 59, 59));
+            color: linear-gradient(135deg, black, rgb(59, 59, 59));
         }
 
+        footer {
+            position: absolute;
+            bottom: 10px;
+            color: white;
+            font-size: 0.8rem;
+            text-align: center;
+        }
     </style>
     <script async src="https://cse.google.com/cse.js?cx=65cdc7ba81fc649ea"></script>
 </head>
@@ -125,5 +146,8 @@
         <h1>Nexora</h1>
         <div class="gcse-search"></div>
     </div>
+    <footer>
+        <p>&copy; 2025 Nexora. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
