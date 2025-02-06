@@ -1,0 +1,132 @@
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0000ff, #5b00ff, #ff0000);
+            background-size: 200% 200%;
+            animation: gradientBG 8s ease infinite;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dot {
+            position: relative;
+            width: 2em;
+            height: 2em;
+            margin: 0.8em;
+            border-radius: 50%;
+            background: #7ef9ff;
+            animation: wave 2s ease-out infinite;
+        }
+
+        .dot:nth-child(1) { background: #7ef9ff; animation-delay: 0s; }
+        .dot:nth-child(2) { background: #89cff0; animation-delay: 0.2s; }
+        .dot:nth-child(3) { background: #4682b4; animation-delay: 0.4s; }
+        .dot:nth-child(4) { background: #0f52ba; animation-delay: 0.6s; }
+        .dot:nth-child(5) { background: #000080; animation-delay: 0.8s; }
+
+        @keyframes wave {
+            50%, 75% { transform: scale(2.5); }
+            80%, 100% { opacity: 0; }
+        }
+
+        @keyframes loadAnimation {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .search-container {
+            text-align: center;
+            color: white;
+            background: transparent !important;
+            animation: loadAnimation 5s ease-out;
+            display: none;
+        }
+
+        .search-container h1 {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .gcse-search {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 0px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .gcse-search input {
+            border: 2px solid #000 !important;
+            outline: none !important;
+            background: transparent !important;
+            color: white !important;
+            font-size: 1.2rem !important;
+            width: 250px !important;
+            margin-right: 10px !important;
+            padding: 12px;
+            border-radius: 8px;
+            transition: border 0.3s ease;
+        }
+
+        .gcse-search input:focus { border-color: #ff0000 !important; }
+
+        .gcse-search button {
+            background: #000000 !important;
+            border: none !important;
+            font-size: 1.2rem;
+            color: white !important;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .gcse-search button:hover { transform: scale(1.1) !important; background-color: #333 !important; }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            color: black;
+            font-size: 0.8rem;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            animation: loadAnimation 5s ease-out;
+        }
+
+        .gsc-resultsbox-visible {
+            background: none !important;
+            color: black !important;
+            padding: 20px;
+            border: none !important;
+        }
+
+        .gsc-result {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .gsc-result:hover { background: rgba(0, 0, 0, 0.05) !important; border-radius: 4px; }
