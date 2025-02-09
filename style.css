@@ -23,7 +23,7 @@ body {
     background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
     width: 100px;
     height: 100px;
-    animation: spinning82341 1.7s linear infinite;
+    animation: spinning82341 1.7s linear 5s forwards;
     text-align: center;
     border-radius: 50%;
     filter: blur(3px);
@@ -74,20 +74,24 @@ body {
 }
 
 .gcse-search input {
-    border: 2px solid #000 !important;
+    border: 2px solid #00e1ff !important; 
     outline: none !important;
-    background: transparent !important;
+    background: rgba(0, 0, 0, 0.6) !important; 
     color: #fff !important; 
-    font-size: 1.2rem !important;
-    width: 250px !important;
+    font-size: 1.5rem !important; 
+    width: 300px !important; 
     margin-right: 10px !important;
-    padding: 12px;
-    border-radius: 40px;
-    transition: border 0.3s ease;
+    padding: 14px 20px; 
+    border-radius: 40px; 
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 225, 255, 0.5); 
 }
 
 .gcse-search input:focus {
-    border-color: #ff0000 !important;
+    border-color: #ba42ff !important; 
+    box-shadow: 0 4px 20px rgba(186, 66, 255, 0.7); 
+    background: rgba(0, 0, 0, 0.8) !important; 
+    
 }
 
 .gcse-search button {
@@ -126,12 +130,12 @@ footer {
 }
 
 .gsc-result {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 1px solid rgb(0, 0, 0) !important;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
 
 .gsc-result:hover {
-    background: rgba(0, 0, 0, 0.05) !important;
-    border-radius: 4px;
+    background: rgba(0, 0, 0, 0) !important;
+    border-radius: 40px;
 }
