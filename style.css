@@ -23,7 +23,7 @@ body {
     background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
     width: 100px;
     height: 100px;
-    animation: spinning82341 1.7s linear 5s forwards;
+    animation: spinning82341 1.7s linear infinite; 
     text-align: center;
     border-radius: 50%;
     filter: blur(3px);
