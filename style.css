@@ -51,7 +51,7 @@ body {
     text-align: center;
     color: white;
     background: transparent !important;
-    animation: spinning02341 3s;
+    animation: spinning02341 5s ease-out;
     display: none;
 }
 
